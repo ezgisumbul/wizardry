@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { SpellCard } from '../components/SpellCard';
+import { SpellCard } from '../components/spell-card/index';
+import './index.css';
 
 const HomePage = () => {
   const [spellList, setSpellList] = useState(null);
@@ -18,10 +19,12 @@ const HomePage = () => {
     <div>
       {console.log(spellList)}
       <h1>SPELLS</h1>
-      {spellList &&
-        spellList.map((spell) => (
-          <SpellCard key={spell.id} spell={spell.attributes} />
-        ))}
+      <div className="card-list">
+        {spellList &&
+          spellList.map((spell) => (
+            <SpellCard key={spell.id} spell={spell.attributes} />
+          ))}
+      </div>
     </div>
   );
 };

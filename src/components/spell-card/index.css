@@ -1,0 +1,15 @@
+.card {
+  padding: 0.5rem;
+  width: 16rem;
+  height: 24rem;
+  border: 1px solid black;
+  background: linear-gradient(
+    0deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(72, 47, 139, 1) 90%
+  );
+  color: white;
+}
+.spell-img {
+  max-width: 12rem;
+}
