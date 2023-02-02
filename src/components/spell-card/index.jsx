@@ -17,8 +17,8 @@ export const SpellCard = ({ spell }) => {
         />
       </div>
       <div className="card-bottom">
-        <h6>Category: {spell.category}</h6>
-        <h6>Effect: {spell.effect}</h6>
+        <h6 className="spell-info">Category: {spell.category}</h6>
+        <h6 className="spell-info">Effect: {spell.effect}</h6>
       </div>
     </div>
   );
