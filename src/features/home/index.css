@@ -1,0 +1,20 @@
+.spell-page {
+  background-color: black;
+  color: white;
+  padding-top: 5rem;
+}
+
+.spell-page-header {
+  color: white;
+  margin: 0 0 0 5rem;
+}
+
+.card-list {
+  display: flex;
+
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 5rem;
+  width: 90%;
+}

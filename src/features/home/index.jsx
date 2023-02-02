@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { SpellCard } from '../components/spell-card/index';
+import { SpellCard } from './../../components/spell-card/index';
 import './index.css';
 
 const HomePage = () => {
@@ -16,9 +16,9 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="spell-page">
       {console.log(spellList)}
-      <h1>SPELLS</h1>
+      <h1 className="spell-page-header">SPELLS</h1>
       <div className="card-list">
         {spellList &&
           spellList.map((spell) => (
