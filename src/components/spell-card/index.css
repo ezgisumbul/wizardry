@@ -33,6 +33,12 @@
   gap: 1.5rem;
 }
 
+.clicked {
+  background: linear-gradient(0deg, rgb(27, 28, 27) 0%, rgb(120, 107, 19) 90%);
+  transition: transform;
+  transform: rotateY('180deg');
+}
+
 .spell-title {
   text-align: center;
   /* word-break: break-all; */

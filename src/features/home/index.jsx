@@ -22,7 +22,12 @@ const HomePage = () => {
       <div className="card-list">
         {spellList &&
           spellList.map((spell) => (
-            <SpellCard key={spell.id} spell={spell.attributes} />
+            <SpellCard
+              key={spell.id}
+              spell={spell.attributes}
+              // onCardClick={handleCardClick}
+              // clicked={isClicked}
+            />
           ))}
       </div>
     </div>

@@ -1,9 +1,18 @@
-import React from 'react';
+import { useState } from 'react';
 import './index.css';
 
-export const SpellCard = ({ spell }) => {
+export const SpellCard = ({ spell, onCardClick }) => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleCardClick = () => {
+    setIsClicked(!isClicked);
+  };
+
   return (
-    <div className="card">
+    <div
+      className={isClicked ? 'card js-card clicked' : 'card js-card'}
+      onClick={handleCardClick}
+    >
       <div className="card-top">
         <h3 className="spell-title">
           {spell.name.includes('/')
@@ -23,3 +32,16 @@ export const SpellCard = ({ spell }) => {
     </div>
   );
 };
+
+// document.addEventListener("click", )
+// const card = document.querySelector('.js-card');
+
+// const isClicked = event.target.classList.contains('clicked');
+// if (event.target.classList.contains('js-card')) {
+//   setIsClicked(!isClicked);
+// }
+
+// if (!isClicked) {
+//   card.classList.add('clicked');
+//   console.log(card.classList);
+// }
