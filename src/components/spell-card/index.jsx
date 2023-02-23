@@ -1,47 +1,39 @@
-import { useState } from 'react';
 import './index.css';
 
 export const SpellCard = ({ spell, onCardClick }) => {
-  const [isClicked, setIsClicked] = useState(false);
-
-  const handleCardClick = () => {
-    setIsClicked(!isClicked);
-  };
-
   return (
-    <div
-      className={isClicked ? 'card js-card clicked' : 'card js-card'}
-      onClick={handleCardClick}
-    >
-      <div className="card-top">
-        <h3 className="spell-title">
-          {spell.name.includes('/')
-            ? spell.name.split('/').join(' / ')
-            : spell.name}
-        </h3>
-        <img
-          src={spell.image ? spell.image : 'wand.jpg'}
-          alt={spell.name}
-          className="spell-img"
-        />
+    <article data-spell={spell.slug} className="card" onClick={onCardClick}>
+      <div className="card-content">
+        <div className="card-front">
+          <header className="card-top">
+            <h2 className="spell-title">
+              {spell.name.replace(/\/|&/, (match) => ` ${match} `)}
+            </h2>
+          </header>
+
+          <img
+            // optional chaning: src={spell?.attribute?.image?.url || 'wand.jpg'}
+            src={spell.image || 'wand.jpg'}
+            alt={spell.name}
+            className="spell-img"
+          />
+        </div>
+
+        <div className="card-back">
+          <dl className="card-bottom">
+            <div className="spell-info">
+              <dt>Category:</dt>
+              <dd>{spell.category}</dd>
+            </div>
+            <div className="spell-info">
+              <dt>Effect:</dt>
+              <dd>{spell.effect}</dd>
+            </div>
+          </dl>
+        </div>
       </div>
-      <div className="card-bottom">
-        <h6 className="spell-info">Category: {spell.category}</h6>
-        <h6 className="spell-info">Effect: {spell.effect}</h6>
-      </div>
-    </div>
+    </article>
   );
 };
 
-// document.addEventListener("click", )
-// const card = document.querySelector('.js-card');
-
-// const isClicked = event.target.classList.contains('clicked');
-// if (event.target.classList.contains('js-card')) {
-//   setIsClicked(!isClicked);
-// }
-
-// if (!isClicked) {
-//   card.classList.add('clicked');
-//   console.log(card.classList);
-// }
+// when the page is loaded if there is a hash, jump to the anchor

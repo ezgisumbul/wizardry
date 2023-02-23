@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import HomePage from './features/home/index.jsx';
+import SpellPage from './features/spell/index.jsx';
 import Navbar from './components/navbar/Navbar';
 
 const App = () => {
@@ -7,7 +7,10 @@ const App = () => {
     <BrowserRouter>
       {/* <Navbar /> */}
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<SpellPage />} />
+        <Route path="/spells" element={<SpellPage />}>
+          <Route path=":slug" element={<SpellPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

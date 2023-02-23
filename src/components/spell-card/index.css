@@ -1,18 +1,51 @@
 .card {
-  display: grid;
-  grid-template-rows: 4fr 1fr;
+  position: relative;
 
-  padding: 1rem;
-  gap: 1.5rem;
-  /* flex-direction: column;
-  justify-content: space-between; */
-  padding: 1rem;
   width: 16rem;
   height: 24rem;
 
   color: white;
 
   border: 1px solid black;
+}
+
+/* .card[data-spell='finestra-spell'] {
+  background-color: aqua;
+  transform: scale(2);
+} */
+
+.card-content {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.card:hover .card-content {
+  transform: rotateY(180deg);
+}
+
+.card-top {
+  text-align: center;
+}
+
+.card--clicked {
+  /* background: linear-gradient(0deg, rgb(27, 28, 27) 0%, rgb(120, 107, 19) 90%); */
+  transition: transform 0.5s;
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  inset: 0;
+
+  padding: 1rem;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  z-index: 1;
   background: linear-gradient(
     0deg,
     rgba(2, 0, 36, 1) 0%,
@@ -20,23 +53,9 @@
   );
 }
 
-.card:hover {
-  transition: transform ease-in-out;
-  transform: scale(1.06);
-}
-
-.card-top {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-}
-
-.clicked {
+.card-back {
   background: linear-gradient(0deg, rgb(27, 28, 27) 0%, rgb(120, 107, 19) 90%);
-  transition: transform;
-  transform: rotateY('180deg');
+  transform: rotateY(180deg);
 }
 
 .spell-title {
@@ -47,8 +66,9 @@
 }
 
 .spell-img {
-  max-width: 9rem;
-  max-height: 9rem;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
 }
 
 .card-bottom {
@@ -60,3 +80,5 @@
 .spell-info {
   margin: 0;
 }
+
+/* react router > add routes to spell,  */
