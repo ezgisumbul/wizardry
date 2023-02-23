@@ -3,14 +3,19 @@ import { useLocation, useParams } from 'react-router-dom';
 import { SpellCard } from '../../components/spell-card/index';
 import './index.css';
 
-const SpellPage = () => {
+export const SpellsPage = () => {
   const [spellList, setSpellList] = useState(null);
+
+  // getting the hash
   const { hash } = useLocation();
   const { slug } = useParams();
 
   const handleCardClick = (event) => {
+    // currentTarget is similar to target but gets to target anything inside that parent element with the
+    // attribute instead of the link inside that element or the button or the p tag etc.
     const { currentTarget } = event;
 
+    // setting the hash
     window.location.hash = currentTarget.getAttribute('data-spell');
     // console.log(event.currentTarget.getAttribute('id'));
   };
@@ -29,13 +34,9 @@ const SpellPage = () => {
     if (!hash || !spellList) {
       return;
     }
-    //  I already have the id in the SpellCard but I need to either lift them up to this page or pass this down to SpellCard. This is duplicate
     const spell = hash.replace('#', '');
     const element = document.querySelector(`[data-spell=${spell}]`);
-    console.log({
-      element
-    });
-    // console.log(document.getElementById(hash.replace('#', '')));
+
     if (element) {
       element.scrollIntoView();
     }
@@ -43,6 +44,7 @@ const SpellPage = () => {
 
   return (
     <div className="spell-page">
+      {console.log(spellList)}
       <h1 className="spell-page-header">SPELLS</h1>
       <ul className="card-list">
         {spellList
@@ -51,6 +53,7 @@ const SpellPage = () => {
                 <SpellCard
                   spell={spell.attributes}
                   onCardClick={handleCardClick}
+                  id={spell.id}
                 />
               </li>
             ))
@@ -59,9 +62,3 @@ const SpellPage = () => {
     </div>
   );
 };
-
-export default SpellPage;
-
-// Create a page for single spell by linking to the slug on click
-// also a back button :D
-// fetch the data for just one spell on the single spell page

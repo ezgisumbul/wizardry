@@ -1,0 +1,39 @@
+.single-spell-page {
+  height: 100vh;
+  width: 100%;
+  padding: 1rem;
+
+  background-color: black;
+  color: white;
+}
+
+.single-spell-wrapper {
+  display: flex;
+
+  height: inherit;
+  margin: -2rem auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-spell {
+  /* background-image: url('./../../images/frame.png');
+  background-repeat: no-repeat;
+  background-size: cover; */
+
+  display: flex;
+
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.single-spell-title {
+  margin: 0;
+  padding: 0;
+}
+
+.single-spell-attribute {
+  display: flex;
+
+  gap: 0.5rem;
+}
