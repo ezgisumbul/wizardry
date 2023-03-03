@@ -4,18 +4,18 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 export const SingleSpellPage = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
 
   const [spell, setSpell] = useState(null);
 
   useEffect(() => {
-    fetch(`https://api.potterdb.com/v1/spells/${id}`)
+    fetch(`https://api.potterdb.com/v1/spells/${slug}`)
       .then((response) => response.json())
       .then((result) => {
         setSpell(result.data.attributes);
       })
       .catch((error) => console.log(error));
-  }, [id]);
+  }, [slug]);
 
   // for (const attribute in spell) {
   //   // console.log(`${attribute}: ${spell[attribute]}`);
@@ -34,7 +34,7 @@ export const SingleSpellPage = () => {
 
             <img
               className="single-spell-img"
-              src={spell.image || 'wand.jpg'}
+              src={spell.image || '/wand.jpg'}
               alt={spell.name}
             />
 

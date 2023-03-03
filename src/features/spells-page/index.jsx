@@ -50,11 +50,7 @@ export const SpellsPage = () => {
         {spellList
           ? spellList.map((spell) => (
               <li key={spell.id}>
-                <SpellCard
-                  spell={spell.attributes}
-                  onCardClick={handleCardClick}
-                  id={spell.id}
-                />
+                <SpellCard spell={spell} onCardClick={handleCardClick} />
               </li>
             ))
           : 'loading'}

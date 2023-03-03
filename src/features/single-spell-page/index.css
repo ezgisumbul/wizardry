@@ -1,39 +1,77 @@
 .single-spell-page {
+  display: grid;
+  grid-template-rows: 50px auto;
+  grid-template-areas:
+    'header'
+    'content';
+
+  flex-direction: column;
   height: 100vh;
   width: 100%;
   padding: 1rem;
 
   background-color: black;
-  color: white;
+  color: rgb(189, 185, 165);
 }
 
 .single-spell-wrapper {
   display: flex;
+  grid-area: content;
 
-  height: inherit;
-  margin: -2rem auto;
+  /* outline: 1px solid red; */
+  flex-grow: 1;
+
   justify-content: center;
   align-items: center;
 }
 
 .single-spell {
-  /* background-image: url('./../../images/frame.png');
-  background-repeat: no-repeat;
-  background-size: cover; */
-
   display: flex;
-
   flex-direction: column;
   gap: 2rem;
+  max-width: 40rem;
+  padding: 2rem;
+
+  /* background-image: url('./../../images/frame.png'); */
+  background: linear-gradient(
+    0deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(72, 47, 139, 1) 90%
+  );
+  /* background-repeat: no-repeat;
+  background-size: cover; */
+
+  font-weight: 700;
 }
 
 .single-spell-title {
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
 .single-spell-attribute {
   display: flex;
+  word-break: break-all;
 
   gap: 0.5rem;
 }
+
+.single-spell-attribute:first-child {
+  word-break: keep-all;
+}
+
+.single-spell-img {
+  width: 50%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  align-self: center;
+}
+
+/* style for single spell page. style the cards */
+
+/* check the api for more pages and a home page and navigation bar
+different navbar styles (maybe grid-area)
+
+try out nested router again with :slug > still doesn't work
+*/

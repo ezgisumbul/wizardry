@@ -1,5 +1,14 @@
 .back-btn {
-  border: 1px solid white;
+  grid-area: header;
+  width: 5rem;
+  align-self: center;
+  margin: 4rem;
+  padding: 1rem;
+
+  font-family: Aboreto;
+  font-weight: 700;
+
+  color: rgb(189, 185, 165);
   background-color: transparent;
-  color: white;
+  /* border: 1px solid white; */
 }

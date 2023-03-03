@@ -1,27 +1,29 @@
 import { Link } from 'react-router-dom';
 import './index.css';
 
-export const SpellCard = ({ spell, onCardClick, id }) => {
+export const SpellCard = ({ spell, onCardClick }) => {
+  const { image, name, category, slug, effect } = spell.attributes;
+
   return (
     // "data-spell" is an attribute I set. I could've used an existing attribute such as "id"
     // it, however has to follow this format "data-*".
-    <Link to={`/spells/${id}`}>
-      <article data-spell={spell.slug} className="card" onClick={onCardClick}>
+    <Link to={`/spells/${slug}`}>
+      <article data-spell={slug} className="card" onClick={onCardClick}>
         <div className="card-content">
           <div className="card-front">
             <header className="card-top">
               <h2 className="spell-title">
                 {/* using replace method while specifying a function as the replacement
  to replace "/" with " / ". To search for the required text, RegExis used*/}
-                {spell.name.replace(/\/|&/, (match) => ` ${match} `)}
+                {name.replace(/\/|&/, (match) => ` ${match} `)}
               </h2>
             </header>
 
             <img
               // optional chaining: src={spell?.attribute?.image?.url || 'wand.jpg'}
 
-              src={spell.image || 'wand.jpg'}
-              alt={spell.name}
+              src={image || 'wand.jpg'}
+              alt={name}
               className="spell-img"
             />
           </div>
@@ -29,12 +31,12 @@ export const SpellCard = ({ spell, onCardClick, id }) => {
           <div className="card-back">
             <dl className="card-bottom">
               <div className="spell-info">
-                <dt>Category:</dt>
-                <dd>{spell.category}</dd>
+                <dt className="spell-info-dt">Category:</dt>
+                <dd className="spell-info-dd">{category}</dd>
               </div>
               <div className="spell-info">
-                <dt>Effect:</dt>
-                <dd>{spell.effect}</dd>
+                <dt className="spell-info-dt">Effect:</dt>
+                <dd className="spell-info-dd">{effect}</dd>
               </div>
             </dl>
           </div>
