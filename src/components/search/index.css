@@ -1,0 +1,28 @@
+.search-area {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem 5.2rem;
+  padding: 0 0.5rem;
+
+  border-bottom: 0.1rem solid rgb(247, 232, 145);
+}
+
+.search-input {
+  width: 95%;
+  padding: 0.7rem 0.3rem;
+
+  background-color: transparent;
+  border: none;
+
+  color: rgb(234, 233, 231);
+
+  font-family: Alborato;
+  font-size: 1.4rem;
+}
+
+.search-input:focus-visible {
+  outline: none;
+}

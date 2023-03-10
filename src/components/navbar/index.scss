@@ -1,31 +1,51 @@
-.navbar {
+.navbar,
+.navbar-off {
   display: grid;
-  grid-template-columns: 1fr 5fr;
-  grid-template-areas: 'header content';
+  grid-template-rows: 1fr 0.5fr;
+  grid-template-areas:
+    'header'
+    'content';
 
   gap: 2rem;
-  width: 100%;
-  padding: 2rem 4rem;
+
+  padding: 1.4rem 4rem;
+  margin-top: 2rem;
+
   font-family: Aboreto;
 
-  background-color: black;
+  // background-color: black;
+}
+
+.navbar-header {
+  grid-area: header;
+
+  margin: auto;
+}
+
+.navbar-toggle {
+  display: none;
+
+  background-color: transparent;
+  border: none;
 }
 
 .navbar-link {
-  width: 100%;
+  width: fit-content;
+  padding: 0.6rem;
 
   font-size: 1.6rem;
   font-weight: 700;
   text-align: center;
 
-  color: rgb(189, 185, 165);
+  color: rgb(234, 233, 231);
 }
 
-.navbar-logo {
-  grid-area: header;
-}
+// .navbar-logo {
+//   grid-area: header;
+// }
 
-.navbar-link-wrapper {
+.navbar-link-wrapper,
+.navbar-link-wrapper-off {
   display: flex;
 
   grid-area: content;
@@ -34,21 +54,61 @@
 }
 
 .navbar-logo-img {
-  width: 14rem;
+  width: 18rem;
 }
 
-@media (max-width: 600px) {
+.active {
+  border-bottom: 2px solid rgb(247, 232, 145);
+  border-radius: 0.2rem;
+}
+
+@media (max-width: 760px) {
   .navbar {
     grid-template-areas:
       'header'
       'footer';
-    grid-template-rows: 1fr 2fr;
+    grid-template-rows: 1fr 5fr;
+    grid-template-columns: none;
+
     gap: 1rem;
+    height: 100vh;
+    margin: 0;
+    padding: 0rem 0 8rem 0;
+  }
+
+  .navbar-off {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar-header {
+    position: relative;
+    display: flex;
+
+    align-items: center;
     width: 100vw;
+    margin: 0;
+    height: 7rem;
+    padding: 1rem 0;
+  }
+
+  .navbar-toggle {
+    margin: 0;
+    display: inline-block;
+    position: absolute;
+    // top: 1rem;
+    left: 1.5rem;
   }
 
   .navbar-logo {
     grid-area: header;
+
+    margin: auto;
+  }
+
+  .navbar-logo-img {
+    width: 10rem;
   }
 
   .navbar-link-wrapper {
@@ -57,5 +117,19 @@
     flex-direction: column;
 
     justify-content: space-between;
+  }
+
+  .navbar-link-wrapper-off {
+    display: none;
+    grid-area: unset;
+  }
+
+  .navbar-link {
+    font-size: 1.2rem;
+  }
+
+  .active {
+    border: none;
+    color: rgb(247, 232, 145);
   }
 }

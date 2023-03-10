@@ -15,8 +15,10 @@ const App = () => {
           <Route path=":slug" element={<SingleSpell />} />
         </Route> */}
         {/* but this below, does */}
-        <Route path="/spells" element={<SpellsPage />} />
-        <Route path="/spells/:slug" element={<SingleSpellPage />} />
+        <Route path="/spells">
+          <Route index element={<SpellsPage />} />
+          <Route path=":slug" element={<SingleSpellPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

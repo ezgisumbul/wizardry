@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { SpellCard } from '../../components/spell-card/index';
+
 import './index.css';
+import { Search } from '../../components/search';
+import { ExploreButton } from '../../components/explore-btn';
 
 export const SpellsPage = () => {
   const [spellList, setSpellList] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [resultList, setResultList] = useState([]);
 
   // getting the hash
   const { hash } = useLocation();
-  const { slug } = useParams();
 
   const handleCardClick = (event) => {
     // currentTarget is similar to target but gets to target anything inside that parent element with the
@@ -18,6 +22,26 @@ export const SpellsPage = () => {
     // setting the hash
     window.location.hash = currentTarget.getAttribute('data-spell');
     // console.log(event.currentTarget.getAttribute('id'));
+  };
+
+  const handleScroll = () => {};
+
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value);
+
+    const results = spellList.filter((spell) => {
+      if (event.target.value === '') return spellList;
+      return spell.attributes.name
+        .toLowerCase()
+        .includes(event.target.value.toLowerCase());
+    });
+
+    setResultList(results);
+  };
+
+  const handleSearchTermDeletion = () => {
+    setSearchTerm('');
+    setResultList(spellList);
   };
 
   useEffect(() => {
@@ -44,16 +68,36 @@ export const SpellsPage = () => {
 
   return (
     <div className="spell-page">
-      {console.log(spellList)}
-      <h1 className="spell-page-header">SPELLS</h1>
+      <div className="spell-page-hero">
+        <p className="spell-page-description">
+          From Wingardium Leviosa <br />
+          to Avada Kedavra, <br />
+          welcome <br />
+          to your Charms and Dark Arts class
+        </p>
+        <ExploreButton onButtonClick={handleScroll} />
+      </div>
+
+      <Search
+        searchInput={'spell'}
+        onInputChange={handleInputChange}
+        resultList={resultList}
+        searchTerm={searchTerm}
+        onSearchTermDeletion={handleSearchTermDeletion}
+      />
+
       <ul className="card-list">
-        {spellList
-          ? spellList.map((spell) => (
+        {resultList
+          ? resultList.map((spell) => (
               <li key={spell.id}>
                 <SpellCard spell={spell} onCardClick={handleCardClick} />
               </li>
             ))
-          : 'loading'}
+          : spellList.map((spell) => (
+              <li key={spell.id}>
+                <SpellCard spell={spell} onCardClick={handleCardClick} />
+              </li>
+            ))}
       </ul>
     </div>
   );
