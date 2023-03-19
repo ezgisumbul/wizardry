@@ -4,7 +4,6 @@ import './index.css';
 export const Search = (props) => {
   return (
     <div className="search-area">
-      {console.log('this is the list', props.resultList)}
       <input
         className="search-input"
         type="text"

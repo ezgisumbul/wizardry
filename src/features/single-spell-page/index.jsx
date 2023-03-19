@@ -23,7 +23,6 @@ export const SingleSpellPage = () => {
 
   return (
     <div className="single-spell-page">
-      {console.log(spell)}
       <BackButton className="single-spell-back-btn" />
       <div className="single-spell-wrapper">
         {spell ? (
@@ -32,67 +31,71 @@ export const SingleSpellPage = () => {
               <h2 className="single-spell-title">{spell.name}</h2>
             </header>
 
-            <img
-              className="single-spell-img"
-              src={spell.image || '/wand.jpg'}
-              alt={spell.name}
-            />
+            <div className="single-spell-content">
+              <img
+                className="single-spell-img"
+                src={spell.image || '/wand.jpg'}
+                alt={spell.name}
+              />
 
-            {spell.creator ? (
-              <div className="single-spell-attribute">
-                <dt>Creator:</dt>
-                <dd>{spell.creator}</dd>
-              </div>
-            ) : (
-              ''
-            )}
+              <div className="single-spell-details">
+                {spell.creator ? (
+                  <div className="single-spell-attribute">
+                    <dt>Creator:</dt>
+                    <dd>{spell.creator}</dd>
+                  </div>
+                ) : (
+                  ''
+                )}
 
-            {spell.effect ? (
-              <div className="single-spell-attribute">
-                <dt>Effect:</dt>
-                <dd>{spell.effect}</dd>
-              </div>
-            ) : (
-              ''
-            )}
+                {spell.effect ? (
+                  <div className="single-spell-attribute">
+                    <dt>Effect:</dt>
+                    <dd>{spell.effect}</dd>
+                  </div>
+                ) : (
+                  ''
+                )}
 
-            {spell.hand ? (
-              <div className="single-spell-attribute">
-                <dt>Hand:</dt>
-                <dd>{spell.hand}</dd>
-              </div>
-            ) : (
-              ''
-            )}
+                {spell.hand ? (
+                  <div className="single-spell-attribute">
+                    <dt>Hand:</dt>
+                    <dd>{spell.hand}</dd>
+                  </div>
+                ) : (
+                  ''
+                )}
 
-            {spell.incantation ? (
-              <div className="single-spell-attribute">
-                <dt>Incantation:</dt>
-                <dd>{spell.incantation}</dd>
-              </div>
-            ) : (
-              ''
-            )}
+                {spell.incantation ? (
+                  <div className="single-spell-attribute">
+                    <dt>Incantation:</dt>
+                    <dd>{spell.incantation}</dd>
+                  </div>
+                ) : (
+                  ''
+                )}
 
-            {spell.light ? (
-              <div className="single-spell-attribute">
-                <dt>Light:</dt>
-                <dd>{spell.light}</dd>
-              </div>
-            ) : (
-              ''
-            )}
+                {spell.light ? (
+                  <div className="single-spell-attribute">
+                    <dt>Light:</dt>
+                    <dd>{spell.light}</dd>
+                  </div>
+                ) : (
+                  ''
+                )}
 
-            {spell.wiki ? (
-              <div className="single-spell-attribute">
-                <dt>Wiki:</dt>
-                <dd>
-                  <Link to={spell.wiki}>{spell.wiki}</Link>
-                </dd>
+                {spell.wiki ? (
+                  <div className="single-spell-attribute link">
+                    <dt>Wiki:</dt>
+                    <dd>
+                      <Link to={spell.wiki}>{spell.wiki}</Link>
+                    </dd>
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
-            ) : (
-              ''
-            )}
+            </div>
           </section>
         ) : (
           ''

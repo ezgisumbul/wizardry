@@ -29,14 +29,15 @@ export const SpellsPage = () => {
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
 
-    const results = spellList.filter((spell) => {
-      if (event.target.value === '') return spellList;
-      return spell.attributes.name
-        .toLowerCase()
-        .includes(event.target.value.toLowerCase());
-    });
+    // if (event.target.value === '') return spellList;
 
-    setResultList(results);
+    // const results = spellList.filter((spell) => {
+    //   return spell.attributes.name
+    //     .toLowerCase()
+    //     .includes(event.target.value.toLowerCase());
+    // });
+
+    // setResultList(results);
   };
 
   const handleSearchTermDeletion = () => {
@@ -87,18 +88,26 @@ export const SpellsPage = () => {
       />
 
       <ul className="card-list">
-        {resultList
-          ? resultList.map((spell) => (
-              <li key={spell.id}>
-                <SpellCard spell={spell} onCardClick={handleCardClick} />
-              </li>
-            ))
-          : spellList.map((spell) => (
-              <li key={spell.id}>
-                <SpellCard spell={spell} onCardClick={handleCardClick} />
-              </li>
-            ))}
+        {spellList?.map((spell) => {
+          const shouldBeVisible = searchTerm
+            ? spell.attributes.name
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
+            : true;
+
+          return shouldBeVisible ? (
+            <li key={spell.id}>
+              <SpellCard spell={spell} onCardClick={handleCardClick} />
+            </li>
+          ) : null;
+        })}
       </ul>
     </div>
   );
 };
+
+// Questions:
+// spellList doesn't load on app start
+
+// display: inline-block use cases
+// box-sizing : content-box use cases

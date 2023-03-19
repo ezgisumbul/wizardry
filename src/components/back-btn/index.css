@@ -1,14 +1,24 @@
 .back-btn {
+  display: flex;
+
+  align-items: center;
   grid-area: header;
-  width: 5rem;
+  width: fit-content;
+  gap: 0.5rem;
   align-self: center;
-  margin: 4rem;
-  padding: 1rem;
+  /* margin: 4rem;
+  padding: 1rem; */
 
   font-family: Aboreto;
   font-weight: 700;
+  font-size: 1.2rem;
 
   color: rgb(189, 185, 165);
   background-color: transparent;
-  /* border: 1px solid white; */
+  border: none;
+  /* border-bottom: 1px solid white; */
+}
+.back-btn-chevron {
+  width: 1rem;
+  color: var(--secondary-color);
 }

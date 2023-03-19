@@ -2,20 +2,48 @@ import { NavLink } from 'react-router-dom';
 import './index.scss';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { TfiClose } from 'react-icons/tfi';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import cx from 'clsx';
 
 export const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
+  const [shrinkNavbar, setShrinkNavbar] = useState(false);
 
   const handleMenuToggle = () => {
-    setMenuOpen(!menuOpen);
+    setBurgerMenuOpen(!burgerMenuOpen);
   };
 
+  const checkScroll = () => {
+    const deltaY = window.pageYOffset;
+    // ||
+    // (document.documentElement || document.body.parentNode || document.body)
+    //   .scrollTop;
+    console.log({ deltaY });
+
+    if (deltaY > 180) {
+      setShrinkNavbar(true);
+    } else {
+      setShrinkNavbar(false);
+    }
+  };
+  useEffect(() => {
+    if (window.innerWidth >= 760 && window.innerWidth <= 1000) {
+      window.addEventListener('scroll', checkScroll);
+    }
+
+    return () => window.removeEventListener('scroll', checkScroll);
+  }, []);
+
   return (
-    <nav className={menuOpen ? 'navbar' : 'navbar-off'}>
+    <nav
+      className={cx('navbar', 'navbar-mobile', 'navbar-desktop', {
+        'navbar-mobile--open': burgerMenuOpen,
+        'navbar-shrink': shrinkNavbar
+      })}
+    >
       <div className="navbar-header">
         <button className="navbar-toggle" onClick={handleMenuToggle}>
-          {!menuOpen ? (
+          {!burgerMenuOpen ? (
             <RxHamburgerMenu
               style={{
                 color: 'rgb(189, 185, 165)',
@@ -40,7 +68,11 @@ export const Navbar = () => {
       </div>
 
       <div
-        className={menuOpen ? 'navbar-link-wrapper' : 'navbar-link-wrapper-off'}
+        className={
+          burgerMenuOpen
+            ? 'navbar-link-wrapper navbar-link-wrapper-mobile--open'
+            : 'navbar-link-wrapper navbar-link-wrapper-mobile'
+        }
       >
         <NavLink className="navbar-link" to="/spells">
           Spells

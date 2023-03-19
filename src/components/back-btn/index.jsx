@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { MdArrowBackIosNew } from 'react-icons/md';
 import './index.css';
 
 export const BackButton = () => {
@@ -10,6 +11,7 @@ export const BackButton = () => {
   return (
     <>
       <button className="back-btn" onClick={goBack}>
+        <MdArrowBackIosNew className="back-btn-chevron" />
         Back
       </button>
     </>

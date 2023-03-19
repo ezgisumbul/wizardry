@@ -6,40 +6,27 @@
     'content';
 
   flex-direction: column;
-  height: 100vh;
-  width: 100%;
-  padding: 1rem;
+  margin: 5rem;
 
-  background-color: black;
-  color: rgb(189, 185, 165);
+  background-color: var(--main-bg-color);
+  color: var(--primary-color);
 }
 
 .single-spell-wrapper {
   display: flex;
+
   grid-area: content;
-
-  /* outline: 1px solid red; */
-  flex-grow: 1;
-
+  width: 90vw;
+  margin: auto;
   justify-content: center;
-  align-items: center;
 }
 
 .single-spell {
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  max-width: 40rem;
-  padding: 2rem;
 
-  /* background-image: url('./../../images/frame.png'); */
-  background: linear-gradient(
-    0deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(72, 47, 139, 1) 90%
-  );
-  /* background-repeat: no-repeat;
-  background-size: cover; */
+  flex-direction: column;
+  gap: 6rem;
+  padding: 2rem;
 
   font-weight: 700;
 }
@@ -47,31 +34,70 @@
 .single-spell-title {
   margin: 0;
   padding: 0;
+
   text-align: center;
+  font-size: 3rem;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.single-spell-content {
+  display: flex;
+
+  /* flex-direction: column; */
+  align-items: center;
+  gap: 4rem;
 }
 
 .single-spell-attribute {
   display: flex;
-  word-break: break-all;
 
   gap: 0.5rem;
+  padding: 1rem 0;
+
+  word-break: normal;
+  font-size: 1rem;
+  color: var(--primary-color);
 }
 
-.single-spell-attribute:first-child {
-  word-break: keep-all;
+.single-spell-attribute dt {
+  font-weight: 900;
+  /* border-bottom: 1px solid var(--secondary-color); */
+  color: var(--subtitle-color);
+}
+
+.link dd a {
+  color: var(--link-color);
+  font-family: Bona Nova;
 }
 
 .single-spell-img {
-  width: 50%;
-  aspect-ratio: 1;
-  object-fit: contain;
-  align-self: center;
+  height: 12rem;
 }
 
-/* style for single spell page. style the cards */
+@media (max-width: 900px) {
+  .single-spell-title {
+    font-size: 2rem;
+  }
 
-/* check the api for more pages and a home page and navigation bar
-different navbar styles (maybe grid-area)
+  .single-spell-attribute {
+    font-size: 0.8rem;
+  }
 
-try out nested router again with :slug > still doesn't work
-*/
+  .single-spell-img {
+    height: 7rem;
+  }
+}
+
+@media (max-width: 750px) {
+  .single-spell-page {
+    margin: 1rem;
+  }
+  .single-spell-content {
+    flex-direction: column;
+  }
+
+  .single-spell-img {
+    height: 10rem;
+  }
+}
