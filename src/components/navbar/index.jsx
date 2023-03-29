@@ -27,7 +27,10 @@ export const Navbar = () => {
     }
   };
   useEffect(() => {
-    if (window.innerWidth >= 760 && window.innerWidth <= 1000) {
+    if (
+      window.innerWidth >= 760
+      // && window.innerWidth <= 1000
+    ) {
       window.addEventListener('scroll', checkScroll);
     }
 
