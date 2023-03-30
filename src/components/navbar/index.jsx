@@ -39,9 +39,9 @@ export const Navbar = () => {
 
   return (
     <nav
-      className={cx('navbar', 'navbar-mobile', 'navbar-desktop', {
-        'navbar-mobile--open': burgerMenuOpen,
-        'navbar-shrink': shrinkNavbar
+      className={cx('navbar', {
+        'navbar--open': burgerMenuOpen,
+        'navbar--shrink': shrinkNavbar
       })}
     >
       <div className="navbar-header">
@@ -71,11 +71,9 @@ export const Navbar = () => {
       </div>
 
       <div
-        className={
-          burgerMenuOpen
-            ? 'navbar-link-wrapper navbar-link-wrapper-mobile--open'
-            : 'navbar-link-wrapper navbar-link-wrapper-mobile'
-        }
+        className={cx('navbar-link-wrapper', {
+          'navbar-link-wrapper--open': burgerMenuOpen
+        })}
       >
         <NavLink className="navbar-link" to="/spells">
           Spells
