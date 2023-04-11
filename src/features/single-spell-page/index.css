@@ -9,7 +9,7 @@
   margin: 5rem;
 
   background-color: var(--main-bg-color);
-  color: var(--primary-color);
+  color: var(--primary-txt-color);
 }
 
 .single-spell-wrapper {
@@ -38,7 +38,7 @@
   text-align: center;
   font-size: 3rem;
   font-weight: 500;
-  color: var(--primary-color);
+  color: var(--primary-txt-color);
 }
 
 .single-spell-content {
@@ -57,12 +57,12 @@
 
   word-break: normal;
   font-size: 1rem;
-  color: var(--primary-color);
+  color: var(--primary-txt-color);
 }
 
 .single-spell-attribute dt {
   font-weight: 900;
-  /* border-bottom: 1px solid var(--secondary-color); */
+  /* border-bottom: 1px solid var(--secondary-txt-color); */
   color: var(--subtitle-color);
 }
 

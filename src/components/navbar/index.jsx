@@ -5,37 +5,50 @@ import { TfiClose } from 'react-icons/tfi';
 import { useEffect, useState } from 'react';
 import cx from 'clsx';
 
+// document.doucmentElement is html element
+const html = document.documentElement;
+const PREVENT_SCROLL_CLASS = 'prevent-scrolling';
+
 export const Navbar = () => {
   const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
   const [shrinkNavbar, setShrinkNavbar] = useState(false);
 
   const handleMenuToggle = () => {
-    setBurgerMenuOpen(!burgerMenuOpen);
+    // when negating a state always call an anonymous function so that we make sure that the state is updated
+    setBurgerMenuOpen(() => !burgerMenuOpen);
   };
 
   const checkScroll = () => {
-    const deltaY = window.pageYOffset;
+    const deltaY = window.scrollY;
     // ||
     // (document.documentElement || document.body.parentNode || document.body)
     //   .scrollTop;
     console.log({ deltaY });
 
-    if (deltaY > 180) {
+    if (deltaY > 0) {
       setShrinkNavbar(true);
     } else {
       setShrinkNavbar(false);
     }
   };
   useEffect(() => {
-    if (
-      window.innerWidth >= 760
-      // && window.innerWidth <= 1000
-    ) {
+    // we should still keep this to prevent scroll event to be added on every occasion and limit it to a screensize
+    if (window.innerWidth >= 760 && window.innerWidth <= 1000) {
       window.addEventListener('scroll', checkScroll);
     }
 
     return () => window.removeEventListener('scroll', checkScroll);
   }, []);
+
+  useEffect(() => {
+    if (burgerMenuOpen) {
+      html.classList.add(PREVENT_SCROLL_CLASS);
+    } else {
+      html.classList.remove(PREVENT_SCROLL_CLASS);
+    }
+    // this return is executed only when the component is unmounted
+    return () => html.classList.remove(PREVENT_SCROLL_CLASS);
+  }, [burgerMenuOpen]);
 
   return (
     <nav

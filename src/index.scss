@@ -6,10 +6,16 @@
 :root {
   --nav-bg-color: rgb(31, 31, 29);
   --main-bg-color: rgb(24, 24, 22);
-  --primary-color: rgb(233, 225, 207);
-  --secondary-color: rgb(247, 232, 145);
+  --primary-txt-color: rgb(233, 225, 207);
+  --secondary-txt-color: rgb(247, 232, 145);
   --subtitle-color: rgb(134, 133, 133);
   --link-color: rgb(185, 185, 185);
+  --primary-color: rgba(72, 47, 139, 1);
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
 }
 
 a {

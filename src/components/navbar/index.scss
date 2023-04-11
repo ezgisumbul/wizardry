@@ -1,9 +1,7 @@
 // Tablet
 .navbar {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 100;
   display: flex;
 
@@ -12,6 +10,11 @@
   align-items: flex-start;
 
   background-color: var(--nav-bg-color);
+}
+
+nav.navbar,
+nav.navbar * {
+  transition: all 500ms;
 }
 
 .navbar-header {
@@ -31,7 +34,7 @@
   font-weight: 700;
   text-align: center;
 
-  color: var(--primary-color);
+  color: var(--primary-txt-color);
 }
 
 .navbar-link-wrapper {
@@ -49,7 +52,11 @@
 }
 
 .active {
-  border-bottom: 1px solid var(--secondary-color);
+  border-bottom: 1px solid var(--secondary-txt-color);
+}
+
+a.navbar-logo {
+  border-bottom: none;
 }
 
 // Mobile
@@ -104,6 +111,10 @@
   .navbar-logo {
     margin: auto;
     padding: 1rem 0 0.4rem 0;
+  }
+
+  .prevent-scrolling {
+    overflow: hidden;
   }
 }
 
