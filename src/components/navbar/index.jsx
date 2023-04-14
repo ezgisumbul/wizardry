@@ -2,12 +2,24 @@ import { NavLink } from 'react-router-dom';
 import './index.scss';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { TfiClose } from 'react-icons/tfi';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import cx from 'clsx';
+import { FaHatWizard } from 'react-icons/fa';
+import { RxMagicWand } from 'react-icons/rx';
+import { GiBookshelf } from 'react-icons/gi';
+import { GiPotionBall } from 'react-icons/gi';
+import { TbMovie } from 'react-icons/tb';
 
 // document.doucmentElement is html element
 const html = document.documentElement;
 const PREVENT_SCROLL_CLASS = 'prevent-scrolling';
+const NAVBAR_LINK = [
+  { link: 'Spells', icon: RxMagicWand },
+  { link: 'Potions', icon: GiPotionBall },
+  { link: 'Movies', icon: TbMovie },
+  { link: 'Books', icon: GiBookshelf },
+  { link: 'Characters', icon: FaHatWizard }
+];
 
 export const Navbar = () => {
   const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
@@ -16,6 +28,10 @@ export const Navbar = () => {
   const handleMenuToggle = () => {
     // when negating a state always call an anonymous function so that we make sure that the state is updated
     setBurgerMenuOpen(() => !burgerMenuOpen);
+  };
+
+  const handleLinkSelection = () => {
+    setBurgerMenuOpen(false);
   };
 
   const checkScroll = () => {
@@ -50,6 +66,10 @@ export const Navbar = () => {
     return () => html.classList.remove(PREVENT_SCROLL_CLASS);
   }, [burgerMenuOpen]);
 
+  useLayoutEffect(() => {
+
+  });
+
   return (
     <nav
       className={cx('navbar', {
@@ -78,7 +98,11 @@ export const Navbar = () => {
           )}
         </button>
 
-        <NavLink className="navbar-link navbar-logo" to="/">
+        <NavLink
+          className="navbar-link navbar-logo"
+          to="/"
+          onClick={handleLinkSelection}
+        >
           <img src="/logo.png" alt="home" className="navbar-logo-img" />
         </NavLink>
       </div>
@@ -88,21 +112,20 @@ export const Navbar = () => {
           'navbar-link-wrapper--open': burgerMenuOpen
         })}
       >
-        <NavLink className="navbar-link" to="/spells">
-          Spells
-        </NavLink>
-        <NavLink className="navbar-link" to="/potions">
-          Potions
-        </NavLink>
-        <NavLink className="navbar-link" to="/movies">
-          Movies
-        </NavLink>
-        <NavLink className="navbar-link" to="/books">
-          Books
-        </NavLink>
-        <NavLink className="navbar-link" to="/characters">
-          Characters
-        </NavLink>
+        {NAVBAR_LINK.map((navbarLink, index) => {
+          const Icon = navbarLink.icon;
+          return (
+            <NavLink
+              key={index}
+              className="navbar-link"
+              to={`/${navbarLink.link.toLowerCase()}`}
+              onClick={handleLinkSelection}
+            >
+              <Icon className="navbar-link-icon"></Icon>
+              {navbarLink.link}
+            </NavLink>
+          );
+        })}
       </div>
     </nav>
   );

@@ -1,4 +1,4 @@
-// Tablet
+// Desktop
 .navbar {
   position: sticky;
   top: 0;
@@ -37,6 +37,14 @@ nav.navbar * {
   color: var(--primary-txt-color);
 }
 
+.navbar-link:hover {
+  color: var(--link-color);
+}
+
+.navbar-link-icon {
+  display: none;
+}
+
 .navbar-link-wrapper {
   display: flex;
 
@@ -66,28 +74,56 @@ a.navbar-logo {
     flex-direction: column;
     padding: 0;
     gap: 0;
+    // height: 20vh;
   }
 
   .navbar--open {
     margin: 0;
+    height: 100vh;
   }
 
   .navbar-link-wrapper {
     display: none;
+
+    margin: 0;
+    align-items: flex-start;
+    padding: 1rem 1rem;
+    gap: 3rem;
+
+    // transform: scaleY(0);
   }
 
   .navbar-link-wrapper--open {
     display: flex;
 
     flex-direction: column;
+    justify-content: space-between;
     padding-bottom: 1rem;
 
-    // transition: 1s ease-in-out;
-    // transform: translateY(30px);
+    // can't animate due to re-rendering on menu closing due to state update
+    transition: transform all 2s ease-in-out;
+    transform: translateY(20px);
+    // transform: scaleY(1);
+    // transform-origin: top;
+    // transition: transform 2s ease-in-out;
   }
 
+  .navbar-link {
+    vertical-align: middle;
+
+    font-size: 1.2rem;
+  }
+
+  .navbar-link-icon {
+    display: inline-block;
+
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-right: 1.6rem;
+    vertical-align: middle;
+  }
   .active {
-    color: rgb(247, 232, 145);
+    color: var(--secondary-txt-color);
 
     border: none;
   }
