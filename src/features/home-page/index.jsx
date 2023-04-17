@@ -1,5 +1,6 @@
 import React from 'react';
 import './index.css';
+import { Link } from 'react-router-dom';
 
 const FEATURED_CONTENT = [
   {
@@ -49,28 +50,19 @@ export const HomePage = () => {
   return (
     <div className="home-page">
       {FEATURED_CONTENT.map((content, index) => (
-        <section
-          key={index}
-          className={
-            index % 2 === 0
-              ? 'featured-content'
-              : ' featured-content flip-sides'
-          }
-        >
-          <div className="featured-content-img-box">
-            <img
-              className="featured-content-img"
-              src={`/${content.img}`}
-              alt={content.alt}
-            />
-          </div>
+        <section key={index} className="featured-content">
+          <img
+            className="featured-content-img"
+            src={`/${content.img}`}
+            alt={content.alt}
+          />
 
           <div className="featured-content-txt-box">
             <h1 className="featured-content-title">{content.title}</h1>
             <p className="featured-content-txt">{content.text}</p>
-            <button className="featured-content-btn">
+            <Link className="featured-content-btn" to={`/${content.category}`}>
               Explore {content.category}
-            </button>
+            </Link>
           </div>
         </section>
       ))}
