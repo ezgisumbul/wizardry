@@ -3,6 +3,7 @@ import { SpellsPage } from './features/spells-page/index.jsx';
 import { Navbar } from './components/navbar';
 import { SingleSpellPage } from './features/single-spell-page/index.jsx';
 import { HomePage } from './features/home-page/index.jsx';
+import { MoviesPage } from './features/movies/index.jsx';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route index element={<SpellsPage />} />
           <Route path=":slug" element={<SingleSpellPage />} />
         </Route>
+        <Route path="/movies" element={<MoviesPage />} />
       </Routes>
     </BrowserRouter>
   );

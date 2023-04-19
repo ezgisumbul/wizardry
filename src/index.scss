@@ -12,6 +12,9 @@
   --link-color: rgb(185, 185, 185);
   --primary-color: rgba(72, 47, 139, 1);
   --secondary-color: rgb(65, 33, 152);
+  --gap: 2rem;
+  --scroll-start: 0;
+  --scroll-end: calc(-100% - var(--gap));
 }
 
 .root {

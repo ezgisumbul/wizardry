@@ -35,11 +35,11 @@ export const Navbar = () => {
   };
 
   const checkScroll = () => {
-    const deltaY = window.scrollY;
-    // ||
-    // (document.documentElement || document.body.parentNode || document.body)
-    //   .scrollTop;
-    console.log({ deltaY });
+    const deltaY =
+      window.scrollY ||
+      (document.documentElement || document.body.parentNode || document.body)
+        .scrollTop;
+    // console.log({ deltaY });
 
     if (deltaY > 0) {
       setShrinkNavbar(true);
@@ -66,9 +66,7 @@ export const Navbar = () => {
     return () => html.classList.remove(PREVENT_SCROLL_CLASS);
   }, [burgerMenuOpen]);
 
-  useLayoutEffect(() => {
-
-  });
+  useLayoutEffect(() => {});
 
   return (
     <nav

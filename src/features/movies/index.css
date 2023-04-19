@@ -1,0 +1,39 @@
+.movies-page {
+  margin: auto;
+}
+
+.marquee {
+  display: flex;
+  max-width: 100vw;
+  overflow: hidden;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.marquee-group {
+  display: flex;
+
+  flex-shrink: 0;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+  /* min-width: 100%; */
+
+  animation: scroll-left 60s linear infinite;
+}
+
+.poster {
+  height: 80vh;
+}
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(var(--scroll-start));
+  }
+  to {
+    transform: translateX(var(--scroll-end));
+  }
+}
