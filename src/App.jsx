@@ -4,6 +4,7 @@ import { Navbar } from './components/navbar';
 import { SingleSpellPage } from './features/single-spell-page/index.jsx';
 import { HomePage } from './features/home-page/index.jsx';
 import { MoviesPage } from './features/movies/index.jsx';
+import { SingleMoviePage } from './features/single-movie-page/index.jsx';
 
 const App = () => {
   return (
@@ -20,7 +21,10 @@ const App = () => {
           <Route index element={<SpellsPage />} />
           <Route path=":slug" element={<SingleSpellPage />} />
         </Route>
-        <Route path="/movies" element={<MoviesPage />} />
+        <Route path="/movies">
+          <Route index element={<MoviesPage />} />
+          <Route path=":slug" element={<SingleMoviePage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

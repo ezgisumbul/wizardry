@@ -21,9 +21,8 @@ export const MoviesPage = () => {
           {movies.map(
             (movie, index) =>
               movie.attributes.poster && (
-                <Link to={`/movies/${movie.attributes.title}`}>
+                <Link to={`/movies/${movie.attributes.slug}`} key={index}>
                   <img
-                    key={index}
                     src={movie.attributes.poster}
                     alt={movie.attributes.title}
                     className="poster"
@@ -36,9 +35,8 @@ export const MoviesPage = () => {
           {movies.map(
             (movie, index) =>
               movie.attributes.poster && (
-                <Link to={`/movies/${movie.attributes.title}`}>
+                <Link to={`/movies/${movie.attributes.slug}`} key={index}>
                   <img
-                    key={index}
                     src={movie.attributes.poster}
                     alt={movie.attributes.title}
                     className="poster"

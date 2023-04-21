@@ -1,0 +1,76 @@
+.single-movie-page {
+}
+
+.hero {
+  position: relative;
+
+  height: 70vh;
+}
+
+.background-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  max-width: 100%;
+  opacity: 0.2;
+  /* overflow: hidden;
+  object-fit: cover; */
+}
+
+.title {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 6rem;
+
+  margin: 0;
+  padding: 0;
+
+  font-size: 2em;
+  color: var(--primary-txt-color);
+}
+
+.poster {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 30%;
+  z-index: 10;
+
+  /* margin: auto; */
+
+  height: 70vh;
+}
+
+.summary {
+  /* margin-top: 6rem; */
+  padding: 10em;
+
+  font-weight: 700;
+  line-height: 2.4;
+  text-align: center;
+  color: var(--primary-txt-color);
+}
+
+.toggle-btn {
+  margin: 0 1em;
+  padding: 0.5em 1.4em;
+
+  border: none;
+  border-radius: 3em;
+  background: var(--secondary-color);
+
+  font-family: Aboreto;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+
+  color: var(--primary-txt-color);
+}
+
+.toggle-btn:hover {
+  background: var(--primary-color);
+}

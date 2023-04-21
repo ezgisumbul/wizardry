@@ -1,9 +1,11 @@
 .movies-page {
-  margin: auto;
+  margin: auto 0;
+  /* cannot center it vertically */
 }
 
 .marquee {
   display: flex;
+
   max-width: 100vw;
   overflow: hidden;
   gap: 2rem;
