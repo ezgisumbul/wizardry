@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './index.css';
+import cx from 'clsx';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const SingleMoviePage = () => {
   const [movie, setMovie] = useState(null);
-  const [truncatedSummary, setTruncatedSummary] = useState('');
+  // const [truncatedSummary, setTruncatedSummary] = useState('');
   const { slug } = useParams();
-  const NUMBER_OF_WORDS = 30;
+  // const NUMBER_OF_WORDS = 30;
   const [isTruncated, setIsTruncated] = useState(true);
 
   const toggleSummaryLength = () => {
@@ -22,53 +24,80 @@ export const SingleMoviePage = () => {
       .catch((error) => console.log(error));
   }, [slug]);
 
-  useEffect(() => {
-    const truncateSummary = async () => {
-      let text = await movie.summary;
-      const words = text.split(' ');
+  // useEffect(() => {
+  //   const truncateSummary = async () => {
+  //     let text = await movie.summary;
+  //     const words = text.split(' ');
 
-      text = '';
+  //     text = '';
 
-      for (let i = 0; i < NUMBER_OF_WORDS; i++) {
-        text += words[i] + ' ';
-      }
-      text += '...';
-      setTruncatedSummary(text);
-    };
+  //     for (let i = 0; i < NUMBER_OF_WORDS; i++) {
+  //       text += words[i] + ' ';
+  //     }
+  //     text += '...';
+  //     setTruncatedSummary(text);
+  //   };
 
-    truncateSummary();
-  }, [setTruncatedSummary, movie]);
+  //   truncateSummary();
+  // }, [setTruncatedSummary, movie]);
+  if (!movie) {
+    return null;
+  }
 
   return (
-    <div className="single-movie-page">
-      {console.log(movie)}
-      {movie && (
-        <>
-          <section className="hero">
-            <img
-              src={`/hp-movie-${movie.order - 3}.jpeg`}
-              alt=""
-              className="background-img"
-            />
-            {/* <h1 className="title">{movie.title}</h1> */}
-            <img src={movie.poster} alt={movie.title} className="poster" />
-          </section>
+    <main className="single-movie-page">
+      {console.log({ movie })}
 
-          <div>
-            <p className="summary">
-              {isTruncated ? truncatedSummary : movie.summary}
+      <header
+        className="hero"
+        style={{ backgroundImage: `url(/movie-bg-${movie.slug}.jpeg)` }}
+      >
+        <h1 className="movie-title">
+          {movie.title.includes('and')
+            ? movie.title.split('and').map((str, i) => (
+                <Fragment key={i}>
+                  <p>{str}</p>
+                  {i % 2 === 0 && <p>and</p>}
+                </Fragment>
+              ))
+            : movie.title}
+        </h1>
+      </header>
 
-              <button
-                type="button"
-                onClick={toggleSummaryLength}
-                className="toggle-btn"
-              >
-                {isTruncated ? 'More' : 'Less'}
-              </button>
-            </p>
-          </div>
-        </>
-      )}
-    </div>
+      <figure className="poster-box">
+        <img src={movie.poster} alt={movie.title} className="poster-img" />
+      </figure>
+
+      <article className="movie-info">
+        <h2 className="info-title">Summary</h2>
+        <p
+          className={cx('summary', {
+            'line-clamp': isTruncated
+          })}
+        >
+          {movie.summary}
+        </p>
+        <button
+          type="button"
+          onClick={toggleSummaryLength}
+          className="toggle-btn"
+        >
+          {isTruncated ? 'More' : 'Less'}
+        </button>
+      </article>
+      <article className="movie-info ratio ratio-16x9">
+        <h2 className="info-title">Trailer</h2>
+        <div className="player-container">
+          <iframe
+            className="trailer"
+            src={movie.trailer.replace('watch?v=', 'embed/')}
+            title="Trailer"
+            allowFullScreen
+            width={560 * 1.7}
+            height={315 * 1.7}
+          ></iframe>
+        </div>
+      </article>
+    </main>
   );
 };

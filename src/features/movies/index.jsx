@@ -14,10 +14,9 @@ export const MoviesPage = () => {
   }, []);
   return (
     <div className="movies-page">
-      {console.log(movies)}
-
       <section className="marquee">
         <div className="marquee-group">
+          {console.log(movies)}
           {movies.map(
             (movie, index) =>
               movie.attributes.poster && (
