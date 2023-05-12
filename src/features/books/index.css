@@ -1,15 +1,75 @@
-.books {
+.books-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.books-wrapper {
   position: relative;
 
-  margin: auto;
-  width: 20rem;
-  height: 30rem;
+  /* margin: auto; */
+  /* width: 12rem;
+  height: 18rem; */
+  width: 300px;
+  height: 300px;
 
   border: 1px solid red;
 
-  perspective: 4000px;
-  transition: 1s;
+  /* perspective: 4000px;
+  transition: 1s; */
   transform-style: preserve-3d;
+  transform: rotateX(-30deg) rotateY(330deg);
+}
+
+.books {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  transform-style: preserve-3d;
+
+  /* background: aqua; */
+}
+
+.books span {
+  position: absolute;
+
+  display: block;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: aqua;
+}
+
+.books span:nth-child(1) {
+  background-color: rgb(234, 250, 215);
+
+  transform: translate3d(0, 0, 150px) rotateY(0deg);
+}
+
+.books span:nth-child(2) {
+  background-color: pink;
+
+  transform: translate3d(150px, 0, 0) rotateY(90deg);
+}
+
+.books span:nth-child(3) {
+  background-color: blue;
+
+  transform: translate3d(0, 0, -150px) rotateY(180deg);
+}
+
+.books span:nth-child(4) {
+  background-color: rgb(255, 0, 230);
+
+  transform: translate3d(-150px, 0, 0) rotateY(270deg);
 }
 
 /* .books div {
@@ -20,9 +80,9 @@
   height: 100%;
 } */
 
-.books:hover {
+/* .books-wrapper:hover {
   transform: rotateY(90deg);
-}
+} */
 
 /* .front-cover {
   position: absolute;

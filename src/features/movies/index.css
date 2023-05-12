@@ -1,16 +1,21 @@
 .movies-page {
-  margin: auto 0;
+  /* margin: auto 0; */
+  height: 84vh;
   /* cannot center it vertically */
 }
 
 .marquee {
   display: flex;
 
+  align-items: center;
+  justify-content: center;
   max-width: 100vw;
-  overflow: hidden;
+  height: 100%;
   gap: 2rem;
   margin: 0;
   padding: 0;
+
+  overflow: hidden;
 }
 
 .marquee-group {
@@ -37,5 +42,29 @@
   }
   to {
     transform: translateX(var(--scroll-end));
+  }
+}
+
+@media (max-width: 500px) {
+  .marquee {
+    flex-direction: column;
+  }
+
+  .marquee-group {
+    flex-direction: column;
+    animation: scroll-up 60s linear infinite;
+  }
+
+  .poster {
+    height: 50vh;
+  }
+
+  @keyframes scroll-up {
+    from {
+      transform: translateY(var(--scroll-start));
+    }
+    to {
+      transform: translateY(var(--scroll-end));
+    }
   }
 }

@@ -6,10 +6,8 @@ import cx from 'clsx';
 
 export const SingleMoviePage = () => {
   const [movie, setMovie] = useState(null);
-  // const [truncatedSummary, setTruncatedSummary] = useState('');
-  const { slug } = useParams();
-  // const NUMBER_OF_WORDS = 30;
   const [isTruncated, setIsTruncated] = useState(true);
+  const { slug } = useParams();
 
   const toggleSummaryLength = () => {
     setIsTruncated(() => !isTruncated);
@@ -24,22 +22,6 @@ export const SingleMoviePage = () => {
       .catch((error) => console.log(error));
   }, [slug]);
 
-  // useEffect(() => {
-  //   const truncateSummary = async () => {
-  //     let text = await movie.summary;
-  //     const words = text.split(' ');
-
-  //     text = '';
-
-  //     for (let i = 0; i < NUMBER_OF_WORDS; i++) {
-  //       text += words[i] + ' ';
-  //     }
-  //     text += '...';
-  //     setTruncatedSummary(text);
-  //   };
-
-  //   truncateSummary();
-  // }, [setTruncatedSummary, movie]);
   if (!movie) {
     return null;
   }
