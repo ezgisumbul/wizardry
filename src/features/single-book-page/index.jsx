@@ -19,24 +19,30 @@ export const SingleBookPage = () => {
   if (!book) {
     return null;
   }
+
+  const constructTitle = (title) => {
+    if (!title.includes(' and ')) {
+      return title;
+    }
+    const split = title.split(' and ');
+
+    return (
+      <p>
+        <span className="book-title-line">{split[0]}</span>
+        <span className="book-title-line"> and </span>
+        <span className="book-title-line">{split[1]}</span>
+      </p>
+    );
+  };
   return (
     <div className="book-page-wrapper">
-      <header className="book-title">
-        {' '}
-        {book.title.includes('and')
-          ? book.title.split('and').map((str, i) => (
-              <Fragment key={i}>
-                <p>{str}</p>
-                {i % 2 === 0 && <p>and</p>}
-              </Fragment>
-            ))
-          : book.title}
-      </header>
+      <header className="book-title">{constructTitle(book.title)}</header>
       <article className="book-container">
         <div className="book">
           {console.log(book)}
           <div className="cover">
             <img src={book.cover} alt={book.title} className="cover-img" />
+            <div className="cover-back">Back</div>
           </div>
           <div className="content">
             <h2 className="content-title">Author</h2>
