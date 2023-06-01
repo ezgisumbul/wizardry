@@ -1,4 +1,4 @@
-export const moviesReducer = (state = null, action) => {
+export const singleMovieReducer = (state = null, action) => {
   switch (action.type) {
     case 'FETCH_DATA_SUCCESS':
       return action.payload;

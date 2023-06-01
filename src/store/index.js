@@ -1,9 +1,10 @@
-import { movieReducer } from '../features/movies/reducer';
+// import { movieReducer } from '../features/movies/reducer';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { reducer } from './../reducers/index';
 
-const reducer = combineReducers({
-  movies: movieReducer
-});
+// const reducer = combineReducers({
+//   movies: movieReducer
+// });
 
 export const store = configureStore({
   reducer

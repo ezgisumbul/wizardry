@@ -2,34 +2,44 @@ import { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './index.css';
 import cx from 'clsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { movieState } from './selectors';
+import { fetchSingleMovie } from './actions';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const SingleMoviePage = () => {
-  const [movie, setMovie] = useState(null);
+  // const [movie, setMovie] = useState(null);
   const [isTruncated, setIsTruncated] = useState(true);
   const { slug } = useParams();
+  const dispatch = useDispatch();
+
+  // why couldn't I add line 36 inside this useSelector. I know it is a function. I also tried inside the
+  // selector to add return state.movie.attributes but didn't work. How can I better write this?
+
+  let movie = useSelector(movieState);
 
   const toggleSummaryLength = () => {
     setIsTruncated(() => !isTruncated);
   };
 
   useEffect(() => {
-    fetch(`https://api.potterdb.com/v1/movies/${slug}`)
-      .then((response) => response.json())
-      .then((result) => {
-        setMovie(result.data.attributes);
-      })
-      .catch((error) => console.log(error));
-  }, [slug]);
+    if (!movie) {
+      dispatch(fetchSingleMovie(slug));
+    }
+
+    // eslint-disable-next-line
+  }, []);
 
   if (!movie) {
     return null;
   }
 
+  movie = movie.attributes;
+
+  console.log(movie);
+
   return (
     <main className="single-movie-page">
-      {console.log({ movie })}
-
       <header
         className="hero"
         style={{ backgroundImage: `url(/movie-bg-${movie.slug}.jpeg)` }}

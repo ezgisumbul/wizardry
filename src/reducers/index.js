@@ -1,9 +1,8 @@
-export const dataReducer = (state = [], action) => {
-  switch (action.type) {
-    case 'FETCH_DATA_SUCCESS':
-      return action.payload;
+import { combineReducers } from 'redux';
+import { moviesReducer } from '../features/movies/reducer';
+import { singleMovieReducer } from '../features/single-movie-page/reducer';
 
-    default:
-      return state;
-  }
-};
+export const reducer = combineReducers({
+  movies: moviesReducer,
+  movie: singleMovieReducer
+});
