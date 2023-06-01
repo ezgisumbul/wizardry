@@ -1,6 +1,12 @@
-import { applyMiddleware } from 'redux';
-import { legacy_createStore as createStore } from 'redux';
-import thunk from 'redux-thunk';
-import { dataReducer } from './../reducers/index';
+import { movieReducer } from '../features/movies/reducer';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
-export const store = createStore(dataReducer, applyMiddleware(thunk));
+const reducer = combineReducers({
+  movies: movieReducer
+});
+
+export const store = configureStore({
+  reducer
+});
+
+// store movies in a way that you use more easily
