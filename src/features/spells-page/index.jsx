@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { SpellCard } from '../../components/spell-card/index';
-
 import './index.css';
 import { Search } from '../../components/search';
 import { ExploreButton } from '../../components/explore-btn';
+import { useDispatch, useSelector } from 'react-redux';
+import * as spellsState from './selector';
+import { fetchSpells } from './actions';
 
 export const SpellsPage = () => {
-  const [spellList, setSpellList] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [resultList, setResultList] = useState([]);
+  const dispatch = useDispatch();
+  const spellList = useSelector(spellsState.spells);
 
   // getting the hash
   const { hash } = useLocation();
@@ -21,23 +24,12 @@ export const SpellsPage = () => {
 
     // setting the hash
     window.location.hash = currentTarget.getAttribute('data-spell');
-    // console.log(event.currentTarget.getAttribute('id'));
   };
 
   const handleScroll = () => {};
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
-
-    // if (event.target.value === '') return spellList;
-
-    // const results = spellList.filter((spell) => {
-    //   return spell.attributes.name
-    //     .toLowerCase()
-    //     .includes(event.target.value.toLowerCase());
-    // });
-
-    // setResultList(results);
   };
 
   const handleSearchTermDeletion = () => {
@@ -46,12 +38,10 @@ export const SpellsPage = () => {
   };
 
   useEffect(() => {
-    fetch('https://api.potterdb.com/v1/spells')
-      .then((response) => response.json())
-      .then((result) => {
-        setSpellList(result.data);
-      })
-      .catch((error) => console.log(error));
+    if (!spellList) {
+      dispatch(fetchSpells());
+    }
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -66,6 +56,12 @@ export const SpellsPage = () => {
       element.scrollIntoView();
     }
   }, [spellList, hash]);
+
+  if (!spellList) {
+    return null;
+  }
+
+  console.log(spellList);
 
   return (
     <div className="spell-page">
@@ -105,9 +101,3 @@ export const SpellsPage = () => {
     </div>
   );
 };
-
-// Questions:
-// spellList doesn't load on app start
-
-// display: inline-block use cases
-// box-sizing : content-box use cases

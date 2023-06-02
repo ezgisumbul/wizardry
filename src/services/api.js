@@ -5,8 +5,11 @@ export const fetchData = async (endpoint, id) => {
     url = `${url}/${id}`;
   }
 
+  console.log('fetchData() running successfully');
+
   try {
     const response = await fetch(url);
+
     const data = await response.json();
     return data;
   } catch (error) {
