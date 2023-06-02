@@ -3,20 +3,17 @@ import { useParams } from 'react-router-dom';
 import './index.css';
 import cx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { movieState } from './selectors';
-import { fetchSingleMovie } from './actions';
+import * as moviesState from './../movies/selectors';
+import { fetchMovies } from '../movies/actions';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const SingleMoviePage = () => {
-  // const [movie, setMovie] = useState(null);
   const [isTruncated, setIsTruncated] = useState(true);
   const { slug } = useParams();
   const dispatch = useDispatch();
 
-  // why couldn't I add line 36 inside this useSelector. I know it is a function. I also tried inside the
-  // selector to add return state.movie.attributes but didn't work. How can I better write this?
-
-  let movie = useSelector(movieState);
+  const movies = useSelector(moviesState.movies);
+  const movie = movies?.[slug];
 
   const toggleSummaryLength = () => {
     setIsTruncated(() => !isTruncated);
@@ -24,9 +21,8 @@ export const SingleMoviePage = () => {
 
   useEffect(() => {
     if (!movie) {
-      dispatch(fetchSingleMovie(slug));
+      dispatch(fetchMovies(slug));
     }
-
     // eslint-disable-next-line
   }, []);
 
@@ -34,7 +30,7 @@ export const SingleMoviePage = () => {
     return null;
   }
 
-  movie = movie.attributes;
+  // movie = movie.attributes;
 
   console.log(movie);
 

@@ -9,9 +9,10 @@ export const MoviesPage = () => {
   const dispatch = useDispatch();
 
   const movies = useSelector(moviesState.movies);
+  const isFetched = useSelector(moviesState.isFetched);
 
   useEffect(() => {
-    if (!movies) {
+    if (!isFetched) {
       dispatch(fetchMovies());
     }
     // eslint-disable-next-line
@@ -27,13 +28,13 @@ export const MoviesPage = () => {
     <div className="movies-page">
       <section className="marquee">
         <div className="marquee-group">
-          {movies.map(
-            (movie, index) =>
-              movie.attributes.poster && (
-                <Link to={`/movies/${movie.attributes.slug}`} key={index}>
+          {Object.values(movies).map(
+            (movie) =>
+              movie.poster && (
+                <Link to={`/movies/${movie.slug}`} key={movie.slug}>
                   <img
-                    src={movie.attributes.poster}
-                    alt={movie.attributes.title}
+                    src={movie.poster}
+                    alt={movie.title}
                     className="poster"
                   />
                 </Link>
@@ -41,13 +42,13 @@ export const MoviesPage = () => {
           )}
         </div>
         <div aria-hidden="true" className="marquee-group">
-          {movies.map(
-            (movie, index) =>
-              movie.attributes.poster && (
-                <Link to={`/movies/${movie.attributes.slug}`} key={index}>
+          {Object.values(movies).map(
+            (movie) =>
+              movie.poster && (
+                <Link to={`/movies/${movie.slug}`} key={movie.slug}>
                   <img
-                    src={movie.attributes.poster}
-                    alt={movie.attributes.title}
+                    src={movie.poster}
+                    alt={movie.title}
                     className="poster"
                   />
                 </Link>
