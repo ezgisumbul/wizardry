@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import './index.css';
 
 export const SpellCard = ({ spell, onCardClick }) => {
-  const { image, name, category, slug, effect } = spell.attributes;
+  const { image, name, category, slug, effect } = spell;
 
   return (
     // "data-spell" is an attribute I set. I could've used an existing attribute such as "id"

@@ -5,7 +5,6 @@ import cx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
 import * as moviesState from './../movies/selectors';
 import { fetchMovies } from '../movies/actions';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const SingleMoviePage = () => {
   const [isTruncated, setIsTruncated] = useState(true);
@@ -29,8 +28,6 @@ export const SingleMoviePage = () => {
   if (!movie) {
     return null;
   }
-
-  // movie = movie.attributes;
 
   console.log(movie);
 

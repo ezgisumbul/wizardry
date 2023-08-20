@@ -12,6 +12,9 @@ export const MoviesPage = () => {
   const isFetched = useSelector(moviesState.isFetched);
 
   useEffect(() => {
+    // if isFetched is false, this means the movies object has aonly a single movie
+    // instead of full list of movies, due to user visiting single movie page
+    // before spells page being rendered
     if (!isFetched) {
       dispatch(fetchMovies());
     }

@@ -12,7 +12,8 @@ export const SpellsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [resultList, setResultList] = useState([]);
   const dispatch = useDispatch();
-  const spellList = useSelector(spellsState.spells);
+  const spells = useSelector(spellsState.spells);
+  const isFetched = useSelector(spellsState.isFetched);
 
   // getting the hash
   const { hash } = useLocation();
@@ -34,11 +35,11 @@ export const SpellsPage = () => {
 
   const handleSearchTermDeletion = () => {
     setSearchTerm('');
-    setResultList(spellList);
+    setResultList(spells);
   };
 
   useEffect(() => {
-    if (!spellList) {
+    if (!isFetched) {
       dispatch(fetchSpells());
     }
     // eslint-disable-next-line
@@ -46,7 +47,7 @@ export const SpellsPage = () => {
 
   useEffect(() => {
     // early exit
-    if (!hash || !spellList) {
+    if (!hash || !spells) {
       return;
     }
     const spell = hash.replace('#', '');
@@ -55,13 +56,13 @@ export const SpellsPage = () => {
     if (element) {
       element.scrollIntoView();
     }
-  }, [spellList, hash]);
+  }, [spells, hash]);
 
-  if (!spellList) {
+  if (!spells) {
     return null;
   }
 
-  console.log(spellList);
+  console.log(spells);
 
   return (
     <div className="spell-page">
@@ -84,15 +85,13 @@ export const SpellsPage = () => {
       />
 
       <ul className="card-list">
-        {spellList?.map((spell) => {
+        {Object.values(spells).map((spell) => {
           const shouldBeVisible = searchTerm
-            ? spell.attributes.name
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
+            ? spell.name.toLowerCase().includes(searchTerm.toLowerCase())
             : true;
 
           return shouldBeVisible ? (
-            <li key={spell.id}>
+            <li key={spell.slug}>
               <SpellCard spell={spell} onCardClick={handleCardClick} />
             </li>
           ) : null;

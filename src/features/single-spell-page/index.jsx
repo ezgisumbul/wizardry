@@ -1,35 +1,23 @@
 import './index.css';
 import { BackButton } from '../../components/back-btn';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { singleSpellState } from './selector';
-import { fetchSingleSpell } from './actions';
+import * as spellsState from './selector';
+import { fetchSpells } from './../spells-page/actions';
 
 export const SingleSpellPage = () => {
   const { slug } = useParams();
   const dispatch = useDispatch();
-  let spell = useSelector(singleSpellState);
-  // const [spell, setSpell] = useState(null);
+  const spells = useSelector(spellsState.spells);
+  const spell = spells?.[slug];
 
   useEffect(() => {
-    // fetch(`https://api.potterdb.com/v1/spells/${slug}`)
-    //   .then((response) => response.json())
-    //   .then((result) => {
-    //     setSpell(result.data.attributes);
-    //   })
-    //   .catch((error) => console.log(error));
     if (!spell) {
-      dispatch(fetchSingleSpell(slug));
+      dispatch(fetchSpells(slug));
     }
     // eslint-disable-next-line
   }, []);
-
-  // for (const attribute in spell) {
-  //   // console.log(`${attribute}: ${spell[attribute]}`);
-  // }
-
-  spell = spell.attributes;
 
   if (!spell) {
     return null;

@@ -1,4 +1,7 @@
 export const spells = (state) => {
-  // console.log(state);
-  return state.spells;
+  return state.spells?.spellData;
+};
+
+export const isFetched = (state) => {
+  return state.spells?.isFetched;
 };

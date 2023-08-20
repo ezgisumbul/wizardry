@@ -1,3 +1,7 @@
-export const singleSpellState = (state) => {
-  return state.spell;
+export const spells = (state) => {
+  return state.spells?.spellData;
+};
+
+export const isFetched = (state) => {
+  return state.spells?.isFetched;
 };
